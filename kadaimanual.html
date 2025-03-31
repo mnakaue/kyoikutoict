@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大学生活を10倍楽しむライフハック集を作ろう！</title>
+    <style>
+/**
+Markdownをhtmlレンダリングしたものに適用するスタイルシート
+ */
+
+/* 基本変数 - 拡張版 */
+:root {
+  /* 背景色と基本テキスト */
+  --claude-bg: #fafafa;
+  --claude-text: #141414;
+  --claude-text-secondary: #5a5a5a;
+  --claude-text-tertiary: #757575;
+  
+  /* 境界線と区切り */
+  --claude-border: #e1e1e1;
+  --claude-border-light: #efefef;
+  --claude-border-focus: #c8c8c8;
+  
+  /* コード関連 */
+  --claude-code-bg: #f3f3f3;
+  --claude-code-border: #e5e5e5;
+  --claude-pre-bg: #f8f8fa;
+  
+  /* コンテナとメッセージ */
+  --claude-light-bg: #ffffff;
+  --claude-message-bg: #ffffff;
+  --claude-message-shadow: rgba(0, 0, 0, 0.05);
+  
+  /* ブロック要素 */
+  --claude-blockquote-bg: #f3f3f3;
+  --claude-table-header-bg: #f5f5f5;
+  --claude-table-row-alt: #fafafa;
+  
+  /* アクセント色 */
+  --claude-link: #5d60ef;
+  --claude-hover: #4a4dde;
+  --claude-active: #3a3dc8;
+  --claude-focus: #6366f1;
+  
+  /* 状態色 */
+  --claude-success: #0d9488;
+  --claude-warning: #ca8a04;
+  --claude-error: #dc2626;
+  --claude-info: #2563eb;
+  
+  /* シンタックスハイライト */
+  --claude-syntax-keyword: #cf222e;
+  --claude-syntax-entity: #6639ba;
+  --claude-syntax-constant: #0550ae;
+  --claude-syntax-string: #0a3069;
+  --claude-syntax-variable: #8a4600;
+  --claude-syntax-comment: #6e7781;
+  --claude-syntax-tag: #116329;
+  --claude-syntax-attribute: #0550ae;
+  
+  /* フォント設定 */
+  --claude-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --claude-font-code: "SF Mono", "SFMono-Regular", Consolas, "DejaVu Sans Mono", "Liberation Mono", Menlo, Courier, monospace;
+  --claude-font-size-base: 16px;
+  --claude-font-size-sm: 14px;
+  --claude-font-size-xs: 12px;
+  --claude-font-size-lg: 18px;
+  --claude-font-size-xl: 20px;
+  --claude-font-size-2xl: 24px;
+  --claude-letter-spacing: -0.01em;
+  --claude-letter-spacing-tight: -0.02em;
+  --claude-letter-spacing-wide: 0.01em;
+}
+
+/* Webフォントの読み込み - 拡張版 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* 基本スタイル */
+body {
+  font-family: var(--claude-font-primary);
+  font-size: var(--claude-font-size-base);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: var(--claude-letter-spacing);
+  color: var(--claude-text);
+  background-color: var(--claude-bg);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* メインコンテンツ */
+.claude-markdown-content {
+  background-color: var(--claude-message-bg);
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--claude-message-shadow);
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+/* 見出し - フォント調整強化 */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  font-weight: 600;
+  line-height: 1.3;
+  font-family: var(--claude-font-primary);
+  letter-spacing: var(--claude-letter-spacing-tight);
+  color: var(--claude-text);
+}
+
+h1 { 
+  font-size: var(--claude-font-size-2xl); 
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h2 { 
+  font-size: var(--claude-font-size-xl); 
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+h3 { 
+  font-size: var(--claude-font-size-lg); 
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+h4 { 
+  font-size: var(--claude-font-size-base);
+  font-weight: 600;
+}
+
+h5 { 
+  font-size: var(--claude-font-size-base);
+  font-weight: 500;
+}
+
+h6 { 
+  font-size: var(--claude-font-size-sm);
+  font-weight: 500;
+  color: var(--claude-text-secondary);
+}
+
+/* 段落 - 精密調整 */
+p {
+  margin-bottom: 1em;
+  line-height: 1.65;
+  font-weight: 400;
+  letter-spacing: var(--claude-letter-spacing);
+  color: var(--claude-text);
+  font-size: var(--claude-font-size-base);
+}
+
+/* リンク - 状態の詳細化 */
+a {
+  color: var(--claude-link);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+a:hover {
+  color: var(--claude-hover);
+  text-decoration: underline;
+}
+
+a:active {
+  color: var(--claude-active);
+}
+
+a:focus {
+  color: var(--claude-focus);
+  outline: 2px solid rgba(93, 96, 239, 0.3);
+  outline-offset: 2px;
+}
+
+/* リスト */
+ul, ol {
+  margin-bottom: 1em;
+  padding-left: 2em;
+  line-height: 1.65;
+}
+
+li {
+  margin-bottom: 0.5em;
+  letter-spacing: var(--claude-letter-spacing);
+}
+
+/* ネストされたリスト */
+li > ul, li > ol {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+/* 引用ブロック - 精密調整 */
+blockquote {
+  border-left: 3px solid var(--claude-border);
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.8em 1em;
+  color: var(--claude-text-secondary);
+  background-color: var(--claude-blockquote-bg);
+  border-radius: 0 4px 4px 0;
+  font-size: var(--claude-font-size-base);
+  line-height: 1.6;
+  letter-spacing: var(--claude-letter-spacing);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* コードブロック - 強化版 */
+pre {
+  background-color: var(--claude-pre-bg);
+  border: 1px solid var(--claude-code-border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  margin: 1em 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+  position: relative;
+  font-family: var(--claude-font-code);
+}
+
+code {
+  font-family: var(--claude-font-code);
+  font-size: 0.9em;
+  background-color: var(--claude-code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  letter-spacing: var(--claude-letter-spacing-tight);
+  color: var(--claude-text);
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+}
+
+/* シンタックスハイライト - 詳細カラースキーム */
+.highlight .keyword, 
+.highlight .k,
+.highlight .kd,
+.highlight .kn {
+  color: var(--claude-syntax-keyword);
+}
+
+.highlight .function,
+.highlight .nf,
+.highlight .nx,
+.highlight .nc {
+  color: var(--claude-syntax-entity);
+}
+
+.highlight .constant,
+.highlight .o,
+.highlight .mi,
+.highlight .mf,
+.highlight .bp,
+.highlight .no {
+  color: var(--claude-syntax-constant);
+}
+
+.highlight .string,
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sr {
+  color: var(--claude-syntax-string);
+}
+
+.highlight .variable,
+.highlight .n,
+.highlight .nb {
+  color: var(--claude-syntax-variable);
+}
+
+.highlight .comment,
+.highlight .c,
+.highlight .c1,
+.highlight .cm {
+  color: var(--claude-syntax-comment);
+  font-style: italic;
+}
+
+.highlight .tag,
+.highlight .nt {
+  color: var(--claude-syntax-tag);
+}
+
+.highlight .attr,
+.highlight .na {
+  color: var(--claude-syntax-attribute);
+}
+
+/* Claudeコードブロック - 精密調整 */
+.claude-code {
+  position: relative;
+  background-color: var(--claude-pre-bg);
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+/* 言語タグ表示 */
+.code-language-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 8px;
+  background-color: rgba(0,0,0,0.06);
+  color: var(--claude-text-tertiary);
+  border-radius: 0 6px 0 4px;
+  font-size: var(--claude-font-size-xs);
+  font-family: var(--claude-font-primary);
+  font-weight: 500;
+}
+
+/* テーブル関連 - 列幅を内容に応じて調整するよう修正 */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+  table-layout: auto; /* 内容に応じた列幅にするため fixed から auto に変更 */
+  overflow-x: auto;
+  page-break-inside: avoid;
+  font-size: var(--claude-font-size-sm);
+  line-height: 1.4;
+  border: 1px solid var(--claude-border);
+}
+
+/* テーブルコンテナ（横スクロール対応） */
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+  margin-bottom: 1em;
+  border-radius: 6px;
+  border: 1px solid var(--claude-border);
+}
+
+.table-container table {
+  border: none;
+  margin-bottom: 0;
+}
+
+/* テーブルのセル */
+th, td {
+  border: 1px solid var(--claude-border);
+  padding: 6px 8px;
+  text-align: left;  /* すべて左揃えに統一 */
+  line-height: 1.3;
+  vertical-align: top;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal; /* テキストの折り返しを許可 */
+  min-width: 2em; /* セルの最小幅を設定 */
+}
+
+/* 数値データのセル用スタイル - 左揃えに修正 */
+td.numeric {
+  text-align: left;  /* 右揃えから左揃えに変更 */
+  white-space: normal; /* 折り返し設定を一般のセルと同じに */
+}
+
+/* テーブルのヘッダー */
+th {
+  background-color: var(--claude-table-header-bg);
+  font-weight: 600;
+  color: var(--claude-text);
+  font-size: var(--claude-font-size-sm);
+  letter-spacing: var(--claude-letter-spacing-tight);
+  position: sticky;
+  top: 0;
+  white-space: normal; /* ヘッダーテキストの折り返しを許可 */
+}
+
+/* テーブルの偶数行 */
+tr:nth-child(even) {
+  background-color: var(--claude-table-row-alt);
+}
+
+/* テーブルホバー効果 */
+tr:hover {
+  background-color: rgba(0,0,0,0.02);
+}
+
+/* 画像 */
+img {
+  max-width: 100%;
+  height: auto;
+  page-break-inside: avoid;
+  border-radius: 4px;
+  display: block;
+  margin: 1.5em auto;
+}
+
+/* 水平線 */
+hr {
+  border: 0;
+  border-top: 1px solid var(--claude-border);
+  margin: 2em 0;
+  height: 1px;
+}
+
+/* 選択テキスト */
+::selection {
+  background-color: rgba(93, 96, 239, 0.15);
+  color: var(--claude-text);
+}
+
+/* 印刷ボタン */
+.print-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background-color: var(--claude-link);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--claude-font-primary);
+  font-weight: 500;
+  font-size: var(--claude-font-size-sm);
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.15s ease;
+}
+
+.print-button:hover {
+  background-color: var(--claude-hover);
+}
+
+.print-button:active {
+  background-color: var(--claude-active);
+  transform: translateY(1px);
+}
+
+/* 小さなコンポーネント */
+small, .text-small {
+  font-size: var(--claude-font-size-xs);
+  line-height: 1.5;
+  color: var(--claude-text-secondary);
+}
+
+/* 太字のスタイルを強化 */
+strong, b {
+  font-weight: 700; /* 600から700に変更してより太く */
+  color: var(--claude-text); /* 確実に基本テキスト色を使用 */
+}
+
+em, i {
+  font-style: italic;
+}
+
+/* キーボードキー表示 */
+kbd {
+  font-family: var(--claude-font-code);
+  background-color: var(--claude-code-bg);
+  border: 1px solid var(--claude-border);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+  padding: 0.1em 0.4em;
+  font-size: var(--claude-font-size-xs);
+  line-height: 1;
+}
+
+/* 数式表示 - MathJax互換性 */
+.math {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.math-inline {
+  display: inline-block;
+  margin: 0 0.15em;
+  vertical-align: middle;
+}
+
+.math-display {
+  display: block;
+  margin: 1em 0;
+  text-align: center;
+}
+
+/* 印刷スタイル */
+@media print {
+  body {
+    max-width: 100%;
+    margin: 0;
+    padding: 0.5cm;
+    font-size: 12pt;
+    background-color: white !important;
+    color: black !important;
+    width: 21cm; /* A4幅 */
+  }
+  
+  .claude-markdown-content {
+    background-color: white !important;
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  pre, code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9 !important;
+  }
+  
+  a {
+    color: black !important;
+    text-decoration: underline;
+  }
+  
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+  
+  .no-print { 
+    display: none; 
+  }
+  
+  /* 印刷時の改ページ制御 */
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  p, blockquote, ul, ol, dl, pre {
+    page-break-inside: avoid;
+  }
+  
+  .page-break {
+    page-break-before: always;
+  }
+
+  table, figure, img {
+    page-break-inside: avoid;
+  }
+}
+
+/* ダークモードサポート - 色調整 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --claude-bg: #141414;
+    --claude-text: #e8e8e8;
+    --claude-text-secondary: #b0b0b0;
+    --claude-text-tertiary: #909090;
+    --claude-border: #3a3a3a;
+    --claude-border-light: #333333;
+    --claude-border-focus: #4d4d4d;
+    --claude-code-bg: #222222;
+    --claude-code-border: #3a3a3a;
+    --claude-link: #818cff;
+    --claude-hover: #9ca3ff;
+    --claude-active: #6a77ff;
+    --claude-focus: #8e96ff;
+    --claude-pre-bg: #222222;
+    --claude-message-bg: #1d1d1d;
+    --claude-message-shadow: rgba(0, 0, 0, 0.2);
+    --claude-blockquote-bg: #242424;
+    --claude-table-header-bg: #2a2a2a;
+    --claude-table-row-alt: #242424;
+    
+    /* ダークモードシンタックスハイライト */
+    --claude-syntax-keyword: #ff7b72;
+    --claude-syntax-entity: #d2a8ff;
+    --claude-syntax-constant: #79c0ff;
+    --claude-syntax-string: #a5d6ff;
+    --claude-syntax-variable: #ffa657;
+    --claude-syntax-comment: #8b949e;
+    --claude-syntax-tag: #7ee787;
+    --claude-syntax-attribute: #79c0ff;
+  }
+  
+  body {
+    color: var(--claude-text);
+    background-color: var(--claude-bg);
+  }
+  
+  /* ダークモードでの選択テキスト */
+  ::selection {
+    background-color: rgba(129, 140, 255, 0.25);
+    color: var(--claude-text);
+  }
+  
+  /* テーブルのダークモード調整 */
+  th {
+    background-color: var(--claude-table-header-bg);
+    color: var(--claude-text);
+  }
+  
+  tr:nth-child(even) {
+    background-color: var(--claude-table-row-alt);
+  }
+  
+  tr:hover {
+    background-color: rgba(255,255,255,0.03);
+  }
+  
+  blockquote {
+    color: var(--claude-text-secondary);
+    background-color: var(--claude-blockquote-bg);
+  }
+  
+  code {
+    color: var(--claude-text);
+    background-color: var(--claude-code-bg);
+  }
+  
+  /* ダークモードでの画像調整 - より優しい */
+  img {
+    opacity: 0.9;
+    filter: brightness(0.95);
+  }
+}
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">印刷</button>
+    <div class="claude-markdown-content">
+        <h1 id="大学生活を10倍楽しむライフハック集を作ろう">大学生活を10倍楽しむライフハック集を作ろう！</h1>
+<h2 id="本日の授業のねらい">本日の授業のねらい</h2>
+<p>私たち大学生が日々の生活をより充実させるための「ライフハック」（生活の知恵・工夫）を共有し、実用的なガイドブックを作成します。クラウドツールを活用した協働作業を通して、情報共有の力と大学生活を向上させるアイデアの両方を学びます。</p>
+<h2 id="クラウドとは">クラウドとは？</h2>
+<p>クラウドとは、インターネットを通じてサービスやリソースを提供する仕組みのことです。従来は自分のパソコンにインストールして使用していたソフトウェアやデータ保存を、インターネット上のサーバーで行うことができます。</p>
+<p><strong>クラウドの主な特徴</strong></p>
+<ul>
+<li><strong>複数人での同時編集</strong>: 複数のユーザーが同じ文書を同時に編集できる</li>
+<li><strong>どこからでもアクセス</strong>: 異なるデバイスからでも同じデータにアクセス可能</li>
+<li><strong>自動保存</strong>: 作業内容が自動的に保存される</li>
+<li><strong>共有が容易</strong>: リンク共有などで簡単に他者と共有できる</li>
+</ul>
+<p><strong>今日使うクラウドツール</strong></p>
+<ul>
+<li><strong>ふきだしくん</strong>: アイデア出しのための一時的クラウドツール（24時間でリセット）</li>
+<li><strong>Google ドキュメント</strong>: 作成・保存・共有のための永続的クラウドツール</li>
+</ul>
+<h2 id="完成イメージ">完成イメージ</h2>
+<ul>
+<li>大学生活の様々な場面で役立つ実践的なアドバイス集</li>
+<li>「こんな時どうする？」という悩みへの解決策</li>
+<li>先輩や友人から得た"使える"知恵の共有</li>
+<li>他の学生も参考にできる情報源</li>
+</ul>
+<h2 id="使用するツール">使用するツール</h2>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>ツール名</th>
+<th>用途</th>
+<th>アクセス方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ふきだしくん</strong></td>
+<td>アイデア出しと整理</td>
+<td><a href="https://477.jp/", target="_blank">https://477.jp/</a> （アカウント不要）</td>
+</tr>
+<tr>
+<td><strong>Google ドキュメント</strong></td>
+<td>ライフハック集の作成</td>
+<td>mwu.jpアカウントでアクセス(Googleアカウント)</td>
+</tr>
+<tr>
+<td><strong>Google Classroom</strong></td>
+<td>成果物の共有</td>
+<td>課題ページの「クラスのコメント」欄</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="選択できるカテゴリー">選択できるカテゴリー</h2>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>カテゴリー</th>
+<th>内容例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>時間管理・スケジュール術</td>
+<td>授業の空き時間活用法、効率的な予定管理</td>
+</tr>
+<tr>
+<td>友人関係・サークル</td>
+<td>新しい友達の作り方、サークル活動の両立</td>
+</tr>
+<tr>
+<td>一人暮らし・食事</td>
+<td>簡単レシピ、食費節約テクニック</td>
+</tr>
+<tr>
+<td>お金の節約術</td>
+<td>学割活用法、お得な買い物の仕方</td>
+</tr>
+<tr>
+<td>勉強効率化・テスト対策</td>
+<td>集中力アップ術、効果的な復習法</td>
+</tr>
+<tr>
+<td>健康管理・ストレス対策</td>
+<td>睡眠の質を上げる方法、リフレッシュ法</td>
+</tr>
+<tr>
+<td>デジタルツール・アプリ活用術</td>
+<td>学生生活に役立つアプリ、便利なサービス</td>
+</tr>
+<tr>
+<td>将来・キャリア準備</td>
+<td>1年生からできるキャリア準備、資格取得計画</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="活動の流れ全体90分">活動の流れ（全体90分）</h2>
+<h3 id="導入クラウドの基本とツールの紹介15分">導入：クラウドの基本とツールの紹介（15分）</h3>
+<ul>
+<li>クラウドとは何か</li>
+<li>使用するツールの説明</li>
+<li>活動の目的と流れの確認</li>
+</ul>
+<h3 id="1_ふきだしくんでアイデア出し整理20分">1️⃣ ふきだしくんでアイデア出し・整理（20分）</h3>
+<p><strong>最初の5分：準備</strong></p>
+<ul>
+<li>グループでカテゴリーを選択</li>
+<li>ふきだしくんボードを作成（メンバーのうち誰か１人）<a href="https://477.jp/", target="_blank">https://477.jp/</a></li>
+<li>共有リンクを他のメンバーに送る
+  <ul>
+    <li>右上のリンク→「ボードへの招待用リンクをコピー」</li>
+    <li>コピーしたリンクをメンバーに送る（Gmail（@mwu.jp）またはチャットで）</li>
+  </ul>
+</li>
+<li>全員がアクセスできることを確認</li>
+</ul>
+<p><strong>次の10分：アイデア出し</strong></p>
+<ul>
+<li>1人3個以上のアイデアを付箋に記入</li>
+<li>どんどん思いつくままに書き出す</li>
+<li>質より量を重視</li>
+<li>自分の経験を思い出そう</li>
+</ul>
+<p><strong>最後の5分：整理と選定</strong></p>
+<ul>
+<li>付箋の色分けでアイデアを整理</li>
+<p>色分けの例（あくまでも例です）</p>
+<ul>
+<li>緑=すぐ実践できる</li>
+<li>青=お金がかからない</li>
+<li>黄=時間節約になる</li>
+</ul>
+<li>ベストアイデア5つを選定</li>
+</ul>
+<p><strong>重要❗</strong></p>
+<ul>
+<li>最終画面のスクリーンショットを保存する</li>
+<li>選んだアイデアの内容をメモに控えておく</li>
+</ul>
+<h3 id="2_Google_ドキュメントでライフハック集作成25分">2️⃣ Google ドキュメントでライフハック集作成（25分）</h3>
+<p><strong>各アイデアの記入項目の例</strong></p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+<th>記入例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ライフハック名</strong></td>
+<td>キャッチーなタイトル</td>
+<td>「5分でできる朝食テクニック」</td>
+</tr>
+<tr>
+<td><strong>こんな時に役立つ</strong></td>
+<td>シチュエーション説明</td>
+<td>「朝寝坊して時間がないとき」</td>
+</tr>
+<tr>
+<td><strong>具体的なやり方</strong></td>
+<td>手順や方法</td>
+<td>「①準備 ②実行 ③仕上げ」のように</td>
+</tr>
+<tr>
+<td><strong>実践するコツ</strong></td>
+<td>より効果を高める工夫</td>
+<td>「前日に準備しておくと良い」</td>
+</tr>
+<tr>
+<td><strong>失敗しないポイント</strong></td>
+<td>よくある失敗と対策</td>
+<td>「○○に注意。△△するとうまくいく」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>ファイルの新規作成と共有</strong></p>
+<ul>
+<li><b>グループの誰か１人</b>：
+  <ul>
+    <li>Classroomの画面右上にある「Google アプリ」（9つの点のアイコン）をクリック。表示されたメニューから「ドキュメント」を選択。</li>
+    <li>右上の「共有」ボタン</li>
+    <li>「ユーザーやグループを追加」の欄に共有相手のアドレス(mwu.jp)を入力（複数ある場合はカンマ[,]で区切って入力）。権限が「編集者」になっていることを確認</li>
+    <li>「送信」ボタン</li>
+  </ul>
+
+<li><b>共有されたメンバー</b>：gmailに届いたリンクからドキュメントを開く</li>
+</ul>
+
+<p><strong>見やすくするためのデザイン</strong></p>
+<ul>
+<li>見出しスタイルを活用（書式→段落スタイル）</li>
+<li>箇条書きや番号リストで要点を整理</li>
+<li>重要な部分は色や太字で強調</li>
+<li>フォントサイズは最小11pt以上</li>
+<li>スクリーンショットや絵文字を追加</li>
+</ul>
+<h3 id="3_最終調整とリンク共有5分">3️⃣ 最終調整とリンク共有（5分）</h3>
+<p><strong>最終チェック</strong></p>
+<ul>
+<li>スクリーンに映したときの視認性（教室の後ろ半分からも見えるか）</li>
+<li>全体の統一感とバランス</li>
+<li>スクロール量（少なめに）</li>
+</ul>
+<p><strong>発表準備</strong></p>
+<ul>
+<li>発表者と発表内容を決定</li>
+</ul>
+<p><strong>共有設定</strong></p>
+<ul>
+<li>画面右上の「共有」ボタンをクリック</li>
+<li>一般的なアクセスを「武庫川女子大学」と設定</li>
+<li>権限を「閲覧者（コメント可）」に設定</li>
+<li>「リンクをコピー」をクリック</li>
+<li>「完了」ボタンをクリック</li>
+</ul>
+<p><strong>Classroomに投稿</strong></p>
+<ul>
+<li>課題の「クラスのコメント」欄に:</li>
+<ul>
+<li>学籍番号・名前（全員）を記入し、コピーしたリンクを貼り付て投稿</li>
+</ul>
+</ul>
+<h3 id="発表と相互評価15分">発表と相互評価（15分）</h3>
+<ul>
+<li>選ばれた2グループが発表（各5分）</li>
+<li>他の学生はClassroomで共有されたドキュメントを見ながら聞く</li>
+<li>発表後、ドキュメントにコメントを残す</li>
+</ul>
+<h3 id="まとめと振り返り5分">まとめと振り返り（5分）</h3>
+<ul>
+<li>活動全体の振り返り</li>
+<li>クラウドツール活用の感想共有</li>
+<li>今後の活用についての議論</li>
+</ul>
+<h2 id="作成のポイント">作成のポイント</h2>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>ポイント</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>実用性重視</strong></td>
+<td>実際に使えて効果があるアイデアを集めよう</td>
+</tr>
+<tr>
+<td><strong>具体的に</strong></td>
+<td>「〜するといい」ではなく、例えば「〜という方法で〜する」と具体的に</td>
+</tr>
+<tr>
+<td><strong>経験を生かす</strong></td>
+<td>実際に試したことや友人や先輩から聞いた体験談を盛り込もう</td>
+</tr>
+<tr>
+<td><strong>視覚的に</strong></td>
+<td>文字だけでなく、色や形で情報を整理しよう</td>
+</tr>
+<tr>
+<td><strong>伝わる言葉で</strong></td>
+<td>専門用語を避け、誰にでもわかる表現を使おう</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="重要操作ヒント">【重要】操作ヒント</h2>
+<h3 id="ふきだしくん操作のコツ">ふきだしくん操作のコツ</h3>
+<ul>
+<li>URLは<a href="https://477.jp/", target="_blank">https://477.jp/</a></li>
+<li>ブラウザのバックボタンを押すと作業が消える場合があるので注意</li>
+<li>付箋は右クリックで色変更ができる</li>
+<li>スクリーンショットの撮り方：</li>
+<ul>
+<li>Windows：「Windowsキー + S」→ 切り取り範囲を選択 → Googleドキュメントで「Ctrl + V」で貼り付け</li>
+<li>Mac：「Command + Control + Shift + 4」→ 範囲選択（クリップボードにコピー） → Googleドキュメントで「Command + V」で貼り付け</li>
+</ul>
+</ul>
+<h3 id="Google_ドキュメント操作のコツ">Google ドキュメント操作のコツ</h3>
+<ul>
+<li><a href="https://drive.google.com/file/d/1jsSvuTYaFMZjcHfPsWxZEgQQJCAAUP4Z/view?usp=sharing", target="_blank">こちらからご覧ください</a>
+</li>
+</ul>
+<h3 id="Google_Classroom操作のコツ">Google Classroom操作のコツ</h3>
+<ul>
+<li>課題の「クラスのコメント」欄は課題ページの下部にある</li>
+<li>学籍番号・名前（全員）とリンクを記載する</li>
+<li>投稿後も編集可能（コメントの横にある鉛筆アイコンをクリック）</li>
+</ul>
+    </div>
+</body>
+</html>
